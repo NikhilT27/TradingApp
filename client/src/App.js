@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { useQuery } from "@apollo/client";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import "semantic-ui-css/semantic.min.css";
+import "./App.css";
+import { FETCH_PORTFOLIO_QUERY } from "./util/graphQuery";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
 
 function App() {
+  const { loading, data } = useQuery(FETCH_PORTFOLIO_QUERY);
+  if (data) {
+    console.log(data.getPortfolio);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+        <Route exact path="/" component={Home} />
+      </div>
+    </Router>
   );
 }
 
