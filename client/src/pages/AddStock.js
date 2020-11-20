@@ -12,7 +12,7 @@ import { Dropdown, Grid, Image } from "semantic-ui-react";
 import Stock from "../components/Stock";
 import Footer from "../components/Footer";
 
-export default function Home() {
+export default function AddStock() {
   const [stockToBuy, setStockToBuy] = useState([]);
   const [stockToSell, setStockToSell] = useState([]);
 

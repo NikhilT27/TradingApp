@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 import { FETCH_PORTFOLIO_QUERY } from "./util/graphQuery";
-import Home from "./pages/Home";
+import AddStock from "./pages/AddStock";
+import Portfolio from "./pages/Portfolio";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -21,7 +22,8 @@ function App() {
     <Router>
       <div className="container">
         <Navbar>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Portfolio} />
+          <Route exact path="/addstock" component={AddStock} />
         </Navbar>
       </div>
     </Router>

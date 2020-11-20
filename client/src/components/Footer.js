@@ -7,6 +7,7 @@ import {
   TriangleDownIcon,
   TriangleUpIcon,
 } from "@primer/octicons-react";
+import { gql, useMutation } from "@apollo/client";
 
 export default function Footer({ stocks, buy, sell }) {
   const [swipeUp, setSwipeUp] = useState(false);
@@ -15,6 +16,7 @@ export default function Footer({ stocks, buy, sell }) {
     refreshInterval: 1000,
   });
 
+  const [confirmStock] = useMutation(ADD_STOCK_QUERY);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -31,6 +33,38 @@ export default function Footer({ stocks, buy, sell }) {
   }
 
   function ConfirmStocks() {
+    if (stocks.length) {
+      stocks.map((stock) => {
+        if (checkBuy(stock)) {
+          console.log(`Innside confirm: ${stock}`);
+          const { basevalue } = data.find(
+            (dataStock) => dataStock.symbol === stock
+          );
+          confirmStock({
+            variables: {
+              name: stock,
+              pickedPrice: basevalue.toString(),
+              buy: true,
+              sell: false,
+            },
+          });
+        } else {
+          const { basevalue } = data.find(
+            (dataStock) => dataStock.symbol === stock
+          );
+          confirmStock({
+            variables: {
+              name: stock,
+              pickedPrice: basevalue.toString(),
+              buy: false,
+              sell: true,
+            },
+          });
+        }
+      });
+    }
+
+    console.log(`buy: ${buy}`);
     console.log(`confirm: ${stocks}`);
   }
 
@@ -106,3 +140,28 @@ export default function Footer({ stocks, buy, sell }) {
     </div>
   );
 }
+
+const ADD_STOCK_QUERY = gql`
+  mutation AddStock(
+    $name: String!
+    $pickedPrice: String!
+    $buy: Boolean!
+    $sell: Boolean!
+  ) {
+    addStock(
+      tradeOption: {
+        name: $name
+        pickedPrice: $pickedPrice
+        buy: $buy
+        sell: $sell
+      }
+    ) {
+      id
+      name
+      pickedPrice
+      buy
+      sell
+      purchaseAt
+    }
+  }
+`;
