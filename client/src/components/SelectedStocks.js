@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { HorizontalRuleIcon } from "@primer/octicons-react";
+import { GET_PORTFOLIO_QUERY } from "../util/graphQuery";
 
 export default function SelectedStocks() {
   const { loading, error, data } = useQuery(GET_PORTFOLIO_QUERY);
@@ -19,23 +20,14 @@ export default function SelectedStocks() {
               <div className="padding-portfolio-stocks">
                 <h4>{stock.name}</h4>
               </div>
-              <div className="buy-icon"></div>
+              {stock.buy ? (
+                <div className="buy-icon"></div>
+              ) : (
+                <div className="sell-icon"></div>
+              )}
             </div>
           ))}
       </div>
     </div>
   );
 }
-
-const GET_PORTFOLIO_QUERY = gql`
-  query GetPortfolio {
-    getPortfolio {
-      id
-      name
-      pickedPrice
-      buy
-      sell
-      purchaseAt
-    }
-  }
-`;

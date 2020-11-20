@@ -338,7 +338,9 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 20px;
   padding-bottom: 10px;
 }
 
@@ -366,6 +368,7 @@ body {
   position: relative;
   bottom: 80px;
   width: 20px;
+  margin-bottom: -80px;
   left: 180px;
   height: 20px;
 }
@@ -383,5 +386,54 @@ body {
   text-align: center;
   text-decoration: none;
   color: white;
+  background-color: black;
+}
+
+.portfolio-clicked {
+  position: relative;
+  top: -530px;
+  margin-bottom: -500px;
+  width: 500px;
+  height: 530px;
+  border-radius: 40px 40px 0px 0px;
+  background-color: red;
+}
+
+.portfolio-clicked-innerBox {
+  width: 500px;
+  padding: 20px;
+}
+
+.clicked-portfolio-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.portfolio-name {
+  width: 200px;
+}
+
+.portfolio-brought-price {
+  width: 150px;
+}
+
+.portfolio-current-price {
+  width: 150px;
+}
+
+.portfolio-change {
+  width: 150px;
+}
+
+.portfolio-dismiss-button {
+  width: 400px;
+  border: 0;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  text-decoration: none;
   background-color: black;
 }

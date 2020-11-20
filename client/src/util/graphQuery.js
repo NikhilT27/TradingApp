@@ -12,3 +12,16 @@ export const FETCH_PORTFOLIO_QUERY = gql`
     }
   }
 `;
+
+export const GET_PORTFOLIO_QUERY = gql`
+  query GetPortfolio {
+    getPortfolio {
+      id
+      name
+      pickedPrice
+      buy
+      sell
+      purchaseAt
+    }
+  }
+`;
