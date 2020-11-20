@@ -30,6 +30,10 @@ export default function Footer({ stocks, buy, sell }) {
     return sell.find((x) => x === symbol);
   }
 
+  function ConfirmStocks() {
+    console.log(`confirm: ${stocks}`);
+  }
+
   return (
     <div>
       {swipeUp ? (
@@ -45,7 +49,10 @@ export default function Footer({ stocks, buy, sell }) {
                   data.map((stock) =>
                     checkStocks(stock.symbol) ? (
                       <div
-                        key={stock.symbol + stock.symbol + 123}
+                        key={
+                          stock.symbol +
+                          Math.floor(Math.random() * Math.floor(1000))
+                        }
                         className="swipe-portfolio-detail"
                       >
                         <div className="swipe-logo-symbol">
@@ -83,7 +90,7 @@ export default function Footer({ stocks, buy, sell }) {
               <button
                 className="swipe-confirm-button"
                 disabled={stocks.length ? false : true}
-                onClick={() => console.log("confirm")}
+                onClick={() => ConfirmStocks()}
               >
                 Confirm
               </button>
