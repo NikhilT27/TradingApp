@@ -39,6 +39,7 @@ body {
   align-items: center;
   justify-content: space-around;
   width: 500px;
+  padding-bottom: 10px;
 }
 
 .search-stocks {
@@ -81,6 +82,14 @@ body {
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(238, 238, 238);
+}
+
+.stock-color-buy {
+  background-color: rgb(153, 255, 1);
+}
+
+.stock-color-sell {
+  background-color: rgb(255, 47, 0);
 }
 
 .stock-option {
@@ -127,17 +136,29 @@ body {
   text-decoration: none;
 }
 
+.stock-cancel {
+  border: none;
+  padding: 0px 0px;
+  border-radius: 50%;
+  margin-right: 5px;
+  text-align: center;
+  text-decoration: none;
+}
 .stocks-view {
   width: auto;
-  height: 400px;
+  height: 430px;
   overflow-y: scroll;
   overflow-x: hidden;
+  /* background-color: rebeccapurple; */
 }
 
 .swipe-box {
-  height: 300px;
-  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  height: 50%;
+  width: 500px;
   overflow: hidden;
+  /* background-color: red; */
 }
 
 .swipe-down {
@@ -170,4 +191,104 @@ body {
   margin-right: 5px;
   text-align: center;
   text-decoration: none;
+}
+
+.swipe-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  width: 500px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+}
+
+.selected-stocks {
+  position: relative;
+  top: -350px;
+  left: -6px;
+  margin-bottom: -350px;
+  height: 350px;
+  width: 500px;
+  background-color: white;
+}
+
+.swipe-portfolio-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.swipe-stocks {
+  width: 500px;
+  height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.buy-icon {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+
+  border-bottom: 8px solid rgb(153, 255, 1);
+}
+
+.sell-icon {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+
+  border-top: 8px solid rgb(255, 47, 0);
+}
+
+.swipe-portfolio-stock-symbol {
+  display: flex;
+  align-items: left;
+  width: 100px;
+}
+
+.swipe-portfolio-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.swipe-logo-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.swipe-confirm-button {
+  width: 400px;
+  border: 0;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  text-decoration: none;
+  background-color: black;
+}
+
+.swipe-confirm-button:disabled {
+  background-color: lightgray;
+}
+
+.swipe-stocks-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 250px;
+
+  overflow-x: hidden;
 }

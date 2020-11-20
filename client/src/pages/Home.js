@@ -10,9 +10,11 @@ import {
 import { Dropdown, Grid, Image } from "semantic-ui-react";
 
 import Stock from "../components/Stock";
+import Footer from "../components/Footer";
 
 export default function Home() {
-  const [swipeUp, setSwipeUp] = useState(false);
+  const [stockToBuy, setStockToBuy] = useState([]);
+  const [stockToSell, setStockToSell] = useState([]);
 
   const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -22,6 +24,42 @@ export default function Home() {
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
+
+  function BUYSTOCK(symbol) {
+    if ([...stockToSell, ...stockToBuy].length === 10) {
+      alert("You can select any 10 Stocks");
+    } else {
+      setStockToBuy([...stockToBuy, symbol]);
+    }
+    console.log(`BUY: ${symbol}`);
+  }
+
+  function SELLSTOCK(symbol) {
+    if ([...stockToSell, ...stockToBuy].length === 10) {
+      alert("You can select any 10 Stocks");
+    } else {
+      setStockToSell([...stockToSell, symbol]);
+    }
+    console.log(`Sell: ${symbol}`);
+  }
+
+  function REMOVESTOCK(symbol) {
+    if (stockToBuy.indexOf(symbol) !== -1) {
+      stockToBuy.splice(stockToBuy.indexOf(symbol), 1);
+    }
+
+    if (stockToSell.indexOf(symbol) !== -1) {
+      stockToSell.splice(stockToSell.indexOf(symbol), 1);
+    }
+  }
+
+  function checkBuy(symbol) {
+    return stockToBuy.find((x) => x === symbol);
+  }
+
+  function checkSell(symbol) {
+    return stockToSell.find((x) => x === symbol);
+  }
 
   return (
     <>
@@ -49,67 +87,79 @@ export default function Home() {
       </div>
       <div className="stocks-view">
         {data &&
-          data.map((stock) => (
-            <div key={stock.key} className="stock">
-              <div className="stock-logo">Logo</div>
-              <div className="stock-detail">
-                <div>
-                  <h5>{stock.symbol}</h5>
-                </div>
-                <div>
-                  <h5 style={{ fontWeight: "100" }}>
-                    Pharma | Selected by 38.12%
-                  </h5>
-                </div>
-                <div className="stock-price">
+          data.map((stock) => {
+            let XYZ = "BSNL";
+            return (
+              <div
+                key={stock.symbol + stock.symbol + 123}
+                className={
+                  checkBuy(stock.symbol)
+                    ? "stock stock-color-buy"
+                    : checkSell(stock.symbol)
+                    ? "stock stock-color-sell"
+                    : "stock"
+                }
+              >
+                <div className="stock-logo">Logo</div>
+                <div className="stock-detail">
                   <div>
-                    <h5>{`$${stock.basevalue}`}</h5>
+                    <h5>{stock.symbol}</h5>
                   </div>
                   <div>
-                    <h5 style={{ fontWeight: "100" }}>+38.11%</h5>
+                    <h5 style={{ fontWeight: "100" }}>
+                      Pharma | Selected by 38.12%
+                    </h5>
+                  </div>
+                  <div className="stock-price">
+                    <div>
+                      <h5>{`$${stock.basevalue.toFixed(2)}`}</h5>
+                    </div>
+                    <div>
+                      <h5 style={{ fontWeight: "100" }}>+38.11%</h5>
+                    </div>
                   </div>
                 </div>
+                {checkBuy(stock.symbol) || checkSell(stock.symbol) ? (
+                  <div className="stock-option">
+                    <button
+                      className="stock-cancel"
+                      onClick={() => REMOVESTOCK(stock.symbol)}
+                    >
+                      <XCircleFillIcon size={20} />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="stock-option">
+                    <div>
+                      <button
+                        className="stock-buy"
+                        onClick={() => BUYSTOCK(stock.symbol)}
+                      >
+                        <ChevronUpIcon size={16} />
+                        Buy
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        className="stock-sell"
+                        onClick={() => SELLSTOCK(stock.symbol)}
+                      >
+                        Sell
+                        <ChevronDownIcon size={16} />
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="stock-option">
-                <div>
-                  <button className="stock-buy">
-                    <ChevronUpIcon size={16} />
-                    Buy
-                  </button>
-                </div>
-                <div>
-                  <button className="stock-sell">
-                    Sell
-                    <ChevronDownIcon size={16} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
       </div>
-      <div className="swipe-box">
-        <div className={swipeUp ? "swipe-up" : "swipe-down"}>
-          <div>
-            {!swipeUp && (
-              <button className="swipe-title" onClick={() => setSwipeUp(true)}>
-                <ChevronUpIcon size={16} />
-              </button>
-            )}
-            {swipeUp && (
-              <button className="swipe-title" onClick={() => setSwipeUp(false)}>
-                <ChevronDownIcon size={16} />
-              </button>
-            )}
-          </div>
-          <div>
-            {swipeUp ? (
-              <h4>Portfolio</h4>
-            ) : (
-              <h4>Swipe to view your Portfolio</h4>
-            )}
-          </div>
-        </div>
-      </div>
+
+      <Footer
+        buy={[...stockToBuy]}
+        sell={[...stockToSell]}
+        stocks={[...stockToBuy, ...stockToSell]}
+      />
     </>
   );
 }

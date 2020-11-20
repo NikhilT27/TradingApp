@@ -1,6 +1,8 @@
 import React from "react";
+import Swipe from "../components/Swipe";
+import Footer from "../components/Footer";
 
-export default function Navbar() {
+export default function Navbar({ children }) {
   return (
     <>
       <div className="title-box">
@@ -8,6 +10,8 @@ export default function Navbar() {
           <p>XXXX</p>
         </div>
       </div>
+      {children}
+      {/* <Footer /> */}
     </>
   );
 }

@@ -20,8 +20,9 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <Navbar />
-        <Route exact path="/" component={Home} />
+        <Navbar>
+          <Route exact path="/" component={Home} />
+        </Navbar>
       </div>
     </Router>
   );
