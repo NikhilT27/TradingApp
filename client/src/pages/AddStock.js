@@ -23,7 +23,12 @@ export default function AddStock() {
   });
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data)
+    return (
+      <div className="loader-box">
+        <div class="loader"></div>
+      </div>
+    );
 
   function BUYSTOCK(symbol) {
     if ([...stockToSell, ...stockToBuy].length === 10) {

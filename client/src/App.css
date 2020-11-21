@@ -236,7 +236,7 @@ body {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-
+  margin-left: 10px;
   border-bottom: 8px solid rgb(153, 255, 1);
 }
 
@@ -245,7 +245,7 @@ body {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-
+  margin-left: 10px;
   border-top: 8px solid rgb(255, 47, 0);
 }
 
@@ -376,6 +376,13 @@ body {
 .frame-box {
   width: 500px;
   height: 600px;
+  background-color: white;
+}
+
+.frame-box-transparent {
+  width: 500px;
+  height: 600px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .stock-add-button {
@@ -396,7 +403,7 @@ body {
   width: 500px;
   height: 530px;
   border-radius: 40px 40px 0px 0px;
-  background-color: red;
+  background-color: white;
 }
 
 .portfolio-clicked-innerBox {
@@ -408,26 +415,46 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid gray;
 }
 
 .portfolio-name {
-  width: 200px;
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  justify-content: left;
+  width: 100px;
 }
 
 .portfolio-brought-price {
-  width: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50px;
 }
 
 .portfolio-current-price {
-  width: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50px;
 }
 
 .portfolio-change {
-  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  padding-right: 10px;
+  margin-right: 15px;
 }
 
 .portfolio-dismiss-button {
+  position: relative;
+  bottom: 40px;
+  margin-bottom: -40px;
   width: 400px;
   border: 0;
   border-radius: 50px;
@@ -436,4 +463,36 @@ body {
   color: white;
   text-decoration: none;
   background-color: black;
+}
+
+.portfolio-dismiss-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 200px;
 }

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { PlusIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import useSWR from "swr";
 
 import SelectedStocks from "../components/SelectedStocks";
 import ClickedPortfolioStocks from "../components/ClickedPortfolioStocks";
@@ -11,11 +9,16 @@ import ClickedPortfolioStocks from "../components/ClickedPortfolioStocks";
 export default function Portfolio() {
   const [portfolioClicked, setPortfolioClicked] = useState(false);
   const { loading, error, data } = useQuery(GET_PORTFOLIO_QUERY);
-  if (loading) return "Loading...";
+  if (loading)
+    return (
+      <div className="loader-box">
+        <div class="loader"></div>
+      </div>
+    );
   if (error) return `Error! ${error.message}`;
   return (
     <>
-      <div className="frame-box">
+      <div className={portfolioClicked ? "frame-box-transparent" : "frame-box"}>
         <div
           className="portfolio-box"
           onClick={() => setPortfolioClicked(true)}
@@ -70,14 +73,6 @@ export default function Portfolio() {
                 </div>
                 <ClickedPortfolioStocks queryData={data} />
               </div>
-              <div>
-                <button
-                  className="portfolio-dismiss-button"
-                  onClick={() => setPortfolioClicked(false)}
-                >
-                  Dismiss
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -85,7 +80,16 @@ export default function Portfolio() {
         <div></div>
       )}
       {portfolioClicked ? (
-        <div></div>
+        <div>
+          <div className="portfolio-dismiss-box">
+            <button
+              className="portfolio-dismiss-button"
+              onClick={() => setPortfolioClicked(false)}
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
       ) : (
         <div className="add-stocks-floating-button">
           <Link to="/addstock">

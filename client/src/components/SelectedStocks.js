@@ -5,7 +5,12 @@ import { GET_PORTFOLIO_QUERY } from "../util/graphQuery";
 
 export default function SelectedStocks() {
   const { loading, error, data } = useQuery(GET_PORTFOLIO_QUERY);
-  if (loading) return "Loading...";
+  if (loading)
+    return (
+      <div className="loader-box">
+        <div class="loader"></div>
+      </div>
+    );
   if (error) return `Error! ${error.message}`;
 
   return (

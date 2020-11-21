@@ -18,7 +18,12 @@ export default function Footer({ stocks, buy, sell }) {
 
   const [confirmStock] = useMutation(ADD_STOCK_QUERY);
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data)
+    return (
+      <div className="loader-box">
+        <div class="loader"></div>
+      </div>
+    );
 
   function checkStocks(symbol) {
     return stocks.find((x) => x === symbol);

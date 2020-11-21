@@ -10,9 +10,6 @@ import Portfolio from "./pages/Portfolio";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-
 function App() {
   const { loading, data } = useQuery(FETCH_PORTFOLIO_QUERY);
   if (data) {

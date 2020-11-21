@@ -10,13 +10,22 @@ export default function ClickedPortfolioStocks({ queryData }) {
     refreshInterval: 1000,
   });
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data)
+    return (
+      <div className="loader-box">
+        <div class="loader"></div>
+      </div>
+    );
 
-  const getCurrentValue = (stock) => {
-    const basevalue = 10.254654;
+  function getCurrentValue(stock) {
+    const basevalue = 0;
 
-    return basevalue.toFixed(2);
-  };
+    const dataIndex = data.findIndex((dataStock) => dataStock.symbol === stock);
+    if (dataIndex !== -1) {
+      return data[dataIndex].basevalue.toFixed(2);
+    }
+    return basevalue;
+  }
 
   function getRelativeChange(x, y) {
     const relativeChange = (x - y) / y;
@@ -28,7 +37,14 @@ export default function ClickedPortfolioStocks({ queryData }) {
         queryData.getPortfolio.map((stock) => (
           <div key={stock.id} className="clicked-portfolio-details">
             <div className="portfolio-name">
-              <h4>{stock.name}</h4>
+              <div>
+                <h4>{stock.name}</h4>
+              </div>
+              {stock.buy ? (
+                <div className="buy-icon"></div>
+              ) : (
+                <div className="sell-icon"></div>
+              )}
             </div>
             <div className="portfolio-brought-price">
               <h4>{parseFloat(stock.pickedPrice).toFixed(2)}</h4>
@@ -39,15 +55,14 @@ export default function ClickedPortfolioStocks({ queryData }) {
             <div className="portfolio-change">
               <h4>
                 {getRelativeChange(
-                  parseFloat(stock.pickedPrice).toFixed(2),
-                  10.25
+                  getCurrentValue(stock.name),
+                  parseFloat(stock.pickedPrice).toFixed(2)
                 )}
                 %
               </h4>
             </div>
           </div>
         ))}
-      <div>no data</div>
     </div>
   );
 }
