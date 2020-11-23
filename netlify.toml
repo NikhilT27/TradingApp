@@ -1,3 +1,4 @@
-[[redirects]]
-  from = "/"
-  to = "/client"
+[build]
+  base    = "client"
+  publish = "public/"
+  command = "yarn build"
