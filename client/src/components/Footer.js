@@ -68,7 +68,6 @@ export default function Footer({ stocks, buy, sell }) {
         }
       });
     }
-
     console.log(`buy: ${buy}`);
     console.log(`confirm: ${stocks}`);
   }
