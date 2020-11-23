@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { useQuery } from "@apollo/client";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -8,7 +7,6 @@ import { FETCH_PORTFOLIO_QUERY } from "./util/graphQuery";
 import AddStock from "./pages/AddStock";
 import Portfolio from "./pages/Portfolio";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 function App() {
   const { loading, data } = useQuery(FETCH_PORTFOLIO_QUERY);
