@@ -3,5 +3,8 @@
   publish = "/build"
 
   [[redirects]]
-  from = "https://5fbbfd58f165b100088c49ff--optimistic-bell-e4dd1f.netlify.app/helloWorld"
+  from = "/helloWorld"
   to = "https://us-central1-stock-fantasy-fd46e.cloudfunctions.net/helloWorld"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
