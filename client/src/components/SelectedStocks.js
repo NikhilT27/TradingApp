@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import { HorizontalRuleIcon } from "@primer/octicons-react";
 import { GET_PORTFOLIO_QUERY } from "../util/graphQuery";
 

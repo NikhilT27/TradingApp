@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useSWR from "swr";
-import {
-  ChevronUpIcon,
-  ChevronDownIcon,
-  TriangleDownIcon,
-  TriangleUpIcon,
-} from "@primer/octicons-react";
+import { ChevronUpIcon, ChevronDownIcon } from "@primer/octicons-react";
 import { gql, useMutation } from "@apollo/client";
 
 export default function Footer({ stocks, buy, sell }) {
@@ -31,10 +26,6 @@ export default function Footer({ stocks, buy, sell }) {
 
   function checkBuy(symbol) {
     return buy.find((x) => x === symbol);
-  }
-
-  function checkSell(symbol) {
-    return sell.find((x) => x === symbol);
   }
 
   function ConfirmStocks() {

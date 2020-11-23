@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import useSWR from "swr";
 import {
@@ -7,9 +7,8 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@primer/octicons-react";
-import { Dropdown, Grid, Image } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 
-import Stock from "../components/Stock";
 import Footer from "../components/Footer";
 
 export default function AddStock() {
@@ -93,7 +92,6 @@ export default function AddStock() {
       <div className="stocks-view">
         {data &&
           data.map((stock) => {
-            let XYZ = "BSNL";
             return (
               <div
                 key={stock.symbol + stock.symbol + 123}

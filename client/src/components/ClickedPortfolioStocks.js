@@ -1,6 +1,4 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
-import { GET_PORTFOLIO_QUERY } from "../util/graphQuery";
 import axios from "axios";
 import useSWR from "swr";
 
