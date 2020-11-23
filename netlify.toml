@@ -1,3 +1,7 @@
 [build]
   base    = "client"
   publish = "/build"
+
+  [[redirects]]
+  from = "/helloWorld"
+  to = "https://us-central1-stock-fantasy-fd46e.cloudfunctions.net/helloWorld"
