@@ -3,5 +3,5 @@
   publish = "/build"
 
   [[redirects]]
-  from = "/"
-  to = "https://us-central1-stock-fantasy-fd46e.cloudfunctions.net/"
+  from = ""
+  to = "https://us-central1-stock-fantasy-fd46e.cloudfunctions.net"
