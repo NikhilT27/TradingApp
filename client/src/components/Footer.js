@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
-import useSWR from "swr";
 import { ChevronUpIcon, ChevronDownIcon } from "@primer/octicons-react";
 import { gql, useMutation } from "@apollo/client";
 
-export default function Footer({ stocks, buy, sell }) {
+import FetchSWR from "../util/FetchSWR";
+
+export default function Footer({ stocks, buy }) {
   const [swipeUp, setSwipeUp] = useState(false);
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-  const { data, error } = useSWR(`/helloWorld`, fetcher, {
-    refreshInterval: 1000,
-  });
+  const { data, error } = FetchSWR();
 
   const [confirmStock] = useMutation(ADD_STOCK_QUERY);
   if (error) return <div>failed to load</div>;

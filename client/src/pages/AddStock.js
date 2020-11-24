@@ -10,16 +10,13 @@ import {
 import { Dropdown } from "semantic-ui-react";
 
 import Footer from "../components/Footer";
+import FetchSWR from "../util/FetchSWR";
 
 export default function AddStock() {
   const [stockToBuy, setStockToBuy] = useState([]);
   const [stockToSell, setStockToSell] = useState([]);
 
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-
-  const { data, error } = useSWR(`/helloWorld`, fetcher, {
-    refreshInterval: 1000,
-  });
+  const { data, error } = FetchSWR();
 
   if (error) return <div>failed to load</div>;
   if (!data)
@@ -158,11 +155,7 @@ export default function AddStock() {
           })}
       </div>
 
-      <Footer
-        buy={[...stockToBuy]}
-        sell={[...stockToSell]}
-        stocks={[...stockToBuy, ...stockToSell]}
-      />
+      <Footer buy={[...stockToBuy]} stocks={[...stockToBuy, ...stockToSell]} />
     </>
   );
 }

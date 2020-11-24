@@ -2,11 +2,11 @@ import React from "react";
 import axios from "axios";
 import useSWR from "swr";
 
+import FetchSWR from "../util/FetchSWR";
+
 export default function ClickedPortfolioStocks({ queryData }) {
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-  const { data, error } = useSWR(`/helloWorld`, fetcher, {
-    refreshInterval: 1000,
-  });
+  const { data, error } = FetchSWR();
+
   if (error) return <div>failed to load</div>;
   if (!data)
     return (
