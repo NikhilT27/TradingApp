@@ -25,7 +25,7 @@ export default function Portfolio() {
         >
           <div className="user-portfolio-box">
             <div className="user-portfolio-details">
-              <div className="user-portfolio-title">
+              <div className="user-portfolio-title-home">
                 <div>
                   <h4>Arpit Sanghiv (P1)</h4>
                 </div>

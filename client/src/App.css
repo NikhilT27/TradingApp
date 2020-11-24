@@ -344,6 +344,17 @@ body {
   padding-bottom: 10px;
 }
 
+.user-portfolio-title-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 480px;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
 .user-portfolio-pl {
   display: flex;
   flex-direction: row;
